@@ -109,7 +109,7 @@ var EventCenter = {
       this.$container = $('#page-music')
       this.audio = new Audio()
       this.audio.autoplay = true
-      
+      this.lyricObj = {}
       this.bind()
     },
     bind: function(){
