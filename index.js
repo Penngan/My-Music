@@ -70,7 +70,7 @@ var EventCenter = {
   
     render(){
       var _this = this
-      $.getJSON('//jirenguapi.applinzi.com/fm/getChannels.php')
+      $.getJSON('https://jirenguapi.applinzi.com/fm/getChannels.php')
         .done(function(ret){
           // console.log(ret)
           _this.renderFooter(ret.channels)
@@ -149,7 +149,7 @@ var EventCenter = {
     },
     loadMusic(callback){
       var _this = this
-      $.getJSON('//jirenguapi.applinzi.com/fm/getSong.php',{channel: this.channelId}).done(function(ret){
+      $.getJSON('https://jirenguapi.applinzi.com/fm/getSong.php',{channel: this.channelId}).done(function(ret){
         _this.song = ret['song'][0]
         _this.setMusic()
         _this.loadLyric()
@@ -158,13 +158,11 @@ var EventCenter = {
     loadLyric(){
       var _this = this
     
-      $.getJSON('//jirenguapi.applinzi.com/fm/getLyric.php',{sid: this.song.sid}).done(function(ret){
+      $.getJSON('https://jirenguapi.applinzi.com/fm/getLyric.php',{sid: this.song.sid}).done(function(ret){
         var lyric = ret.lyric
         var lyricObj = {}
         lyric.split('\n').forEach(function(line){
-          //[01:10.25][01:20.25]It a new day
           var times = line.match(/\d{2}:\d{2}/g)
-          //times == ['01:10.25', '01:20.25']
           var str = line.replace(/\[.+?\]/g, '')
           if(Array.isArray(times)){
             times.forEach(function(time){
@@ -199,10 +197,6 @@ var EventCenter = {
       }
     }
   }
-  
-  
-  
-  
   $.fn.boomText = function(type){
     type = type || 'rollIn'
     this.html(function(){
